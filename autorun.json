@@ -1,0 +1,55 @@
+{
+    "command": "./batch_stream",
+    "parameters": [
+        {
+            "name": "Buffer length",
+            "type": "scaling",
+            "min": 1000,
+            "max": 100000000,
+            "step": 10,
+            "step_type": "mult"
+        },
+        {
+            "name": "Batch size",
+            "type": "list",
+            "list": [
+                100,
+                1000,
+                10000,
+                100000,
+                1000000,
+                45000000,
+                90000000
+            ]
+        },
+        {
+            "name": "VC",
+            "type": "static",
+            "value": 0,
+            "output": false
+        },
+        {
+            "name": "Hint",
+            "type": "static",
+            "value": 0,
+            "output": false
+        }
+    ],
+    "extract": [
+        {
+            "name": "Time (ms)",
+            "regex": "Elapsed time: ([0-9]*) milliseconds",
+            "type": "numerical"
+        },
+        {
+            "name": "Num Batches",
+            "regex": "Rd CSR 7 \\[63:32\\]: ([0-9]*)",
+            "type": "numerical"
+        },
+        {
+            "name": "Wasted cycles",
+            "regex": "Rd CSR 6: ([0-9]*)",
+            "type": "numerical"
+        }
+    ]
+}
